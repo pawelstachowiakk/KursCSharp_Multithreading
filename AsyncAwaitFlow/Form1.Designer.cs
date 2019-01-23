@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
             this.resultsTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // startButton
             // 
-            this.button1.Location = new System.Drawing.Point(605, 189);
-            this.button1.Name = "startButton";
-            this.button1.Size = new System.Drawing.Size(93, 42);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Start";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.startButton_Click);
+            this.startButton.Location = new System.Drawing.Point(605, 189);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(93, 42);
+            this.startButton.TabIndex = 0;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // resultsTextBox
             // 
             this.resultsTextBox.Location = new System.Drawing.Point(12, 12);
             this.resultsTextBox.Multiline = true;
             this.resultsTextBox.Name = "resultsTextBox";
+            this.resultsTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.resultsTextBox.Size = new System.Drawing.Size(546, 426);
             this.resultsTextBox.TabIndex = 1;
             // 
@@ -56,7 +57,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.resultsTextBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.startButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -66,7 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.TextBox resultsTextBox;
     }
 }
