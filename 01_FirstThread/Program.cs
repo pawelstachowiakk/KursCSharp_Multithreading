@@ -11,7 +11,7 @@ namespace _01_FirstThread
             Thread t = new Thread(WriteY);
             //uruchamianie wątku
             t.Start();
-            t.Join(1000);
+
             //akcja wykonywana w wątku głównym
             for (int i = 0; i < 100; i++)
                 Console.Write("x");
@@ -22,11 +22,8 @@ namespace _01_FirstThread
         static void WriteY()
         {
             //akcja wykonywana w nowym (pobocznym) wątku 
-            for (int i = 0; i < 10; i++)
-            {
-                Thread.Sleep(200);
+            for (int i = 0; i < 100; i++)
                 Console.Write("y");
-            }
         }
     }
 }

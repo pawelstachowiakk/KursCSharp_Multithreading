@@ -35,7 +35,6 @@ namespace AsyncAwaitFlow
         {
             // TWO
             HttpClient client = new HttpClient();
-            
             Task<string> getStringTask =
                 client.GetStringAsync("https://msdn.microsoft.com");
 
