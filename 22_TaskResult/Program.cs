@@ -13,78 +13,73 @@ namespace _22_TaskResult
         {
             //WaitForTaskResultUsingWait();
             //WaitForTaskResultUsingResult();
-            WaitForTasks();
+            WaitForAnyTask();
+            //WaitForAllTasks();
             Console.WriteLine("Koniec, naciśnij dowolny klawisz...");
             Console.ReadKey();
-            return;
-            //Task<Double>[] taskArray = { Task.Run<double>(() => DoComputation(1.0)),
-            //                         Task.Run<double>(() => DoComputation(100.0)),
-            //                         Task.Run<double>(() => DoComputation(1000.0)) };
-
-            //var results = new Double[taskArray.Length];
-            //Double sum = 0;
-
-            //for (int i = 0; i < taskArray.Length; i++)
-            //{
-            //    results[i] = taskArray[i].Result;
-            //    Console.Write("{0:N1} {1}", results[i],
-            //                      i == taskArray.Length - 1 ? "= " : "+ ");
-            //    sum += results[i];
-            //}
-            //Console.WriteLine("{0:N1}", sum);
-            //Console.ReadKey();
         }
 
         private static void WaitForTaskResultUsingWait()
         {
             Task task = Task.Run(() =>
             {
-                Console.WriteLine("Begin Task");
+                Console.WriteLine("Początek zadania");
                 Thread.Sleep(2000);
-                Console.WriteLine("End Task");
+                Console.WriteLine("Koniec zadania");
             });
-            Console.WriteLine("Waiting for task...");
+            Console.WriteLine("Oczekiwanie na zakończenie zadania");
 
             //Wątek jest blokowany do momentu wykonania się zadania
             //Można ustawić timeout lub CancellationToken
             task.Wait();
 
-            Console.WriteLine("Task has finished");
+            Console.WriteLine("Zadanie zakończone");
         }
 
         private static void WaitForTaskResultUsingResult()
         {
             Task<string> task = Task<string>.Run(() =>
             {
-                Console.WriteLine("Begin Task");
+                Console.WriteLine("Początek zadania");
                 Thread.Sleep(2000);
-                Console.WriteLine("End Task");
-                return "Greetings from the task";
+                Console.WriteLine("Koniec Zadania");
+                return "Pozdrowienia z zadania!";
             });
-            Console.WriteLine("Waiting for task...");
+            Console.WriteLine("Oczekiwanie na zakończenie zadania");
 
             //Wątek jest blokowany do momentu wykonania się zadania
             string result = task.Result;
 
-            Console.WriteLine($"Task has finished and say: {result}");
+            Console.WriteLine($"Zadanie zakończone z rezultatem: {result}");
         }
 
-        private static void WaitForTasks()
+        private static void WaitForAllTasks()
         {
-            Task task1 = Task.Run(() => DoSomeWork(1000, "1"));
-            Task task2 = Task.Run(() => DoSomeWork(3000, "2"));
-            Task task3 = Task.Run(() => DoSomeWork(5000, "3"));
+            Task task1 = Task.Run(() => DoSomeWork(5000, "1"));
+            Task task2 = Task.Run(() => DoSomeWork(1000, "2"));
+            Task task3 = Task.Run(() => DoSomeWork(3000, "3"));
 
-            Console.WriteLine("Waiting for all tasks");
-            Task.WaitAny(new Task[] { task1, task2, task3 });
-            Console.WriteLine("All tasks have finished");
+            Console.WriteLine("Czekaj na wszystkie zadania");
+            Task.WaitAll(new Task[] { task1, task2, task3 });
+            Console.WriteLine("Wszystkie zadania zostały ukończone");
+        }
+
+        private static void WaitForAnyTask()
+        {
+            Task task1 = Task.Run(() => DoSomeWork(5000, "1"));
+            Task task2 = Task.Run(() => DoSomeWork(1000, "2"));
+            Task task3 = Task.Run(() => DoSomeWork(3000, "3"));
+
+            Console.WriteLine("Czekaj na pierwsze zadanie");
+            int taskIndex = Task.WaitAny(new Task[] { task1, task2, task3 });
+            Console.WriteLine($"Jako pierwsze zakończyło się zadanie {taskIndex + 1}");
         }
 
         private static void DoSomeWork(int sleep, string taskName)
         {
-            Console.WriteLine($"Begin Task {taskName}");
+            Console.WriteLine($"Początek zadania {taskName}");
             Thread.Sleep(sleep);
-            Console.WriteLine($"End Task {taskName}");
+            Console.WriteLine($"Koniec zadania {taskName}");
         }
     }
 }

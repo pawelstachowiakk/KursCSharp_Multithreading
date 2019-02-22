@@ -20,28 +20,28 @@ namespace AsyncAwaitFlow
 
         private async void startButton_Click(object sender, EventArgs e)
         {
-            // ONE
+            // 1
             Task<int> getLengthTask = AccessTheWebAsync();
 
-            // FOUR
+            // 4
             int contentLength = await getLengthTask;
 
-            // SIX
+            // 6
             resultsTextBox.Text +=
                 $"\r\nLength of the downloaded string: {contentLength}.\r\n";
         }
 
         async Task<int> AccessTheWebAsync()
         {
-            // TWO
+            // 2
             HttpClient client = new HttpClient();
             Task<string> getStringTask =
                 client.GetStringAsync("https://msdn.microsoft.com");
 
-            // THREE
+            // 3
             string urlContents = await getStringTask;
 
-            // FIVE
+            // 5
             return urlContents.Length;
         }
     }

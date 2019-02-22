@@ -35,10 +35,10 @@ namespace _11_AtomicityProblem
             for (int i = 0; i < 10; i++)
             {
                 counter++;
-                Interlocked.Add(ref value, 5);
-                Interlocked.Increment(ref value);
-                Interlocked.Exchange(value, 10);
-                Interlocked.CompareExchange(ref value, 20, 10);
+                //Interlocked.Add(ref value, 5);
+                //Interlocked.Increment(ref value);
+                //Interlocked.Exchange(value, 10);
+                //Interlocked.CompareExchange(ref value, 20, 10);
             }
         }
     }

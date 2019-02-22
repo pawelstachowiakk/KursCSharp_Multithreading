@@ -15,31 +15,6 @@ namespace _23_CancelationTokenWithTask
             //CancelBeforeRun();
             CancellationPolling();
 
-            CancellationTokenSource tokenSource = new CancellationTokenSource();
-            CancellationToken token = tokenSource.Token;
-
-            WebClient wc = new WebClient();
-            token.Register(() => wc.CancelAsync());
-            wc.DownloadDataAsync("www.wp.pl");
-            
-            //CancellationTokenSource tokenSource = new CancellationTokenSource();
-            //CancellationToken token = tokenSource.Token;
-
-            //Task task = Task.Run(() => DoWork(token), token);
-
-            //Console.WriteLine($"Task status = {task.Status}");
-
-            //try
-            //{
-            //    task.Wait();
-            //}
-            //catch (Exception)
-            //{
-            //}
-
-
-            //Console.WriteLine($"Task status = {task.Status}");
-
             Console.ReadKey();
         }
 
